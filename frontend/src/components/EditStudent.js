@@ -3,8 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import api from '../api';
 
 const EditStudent = () => {
-  const { id } = useParams(); // Get student ID from URL
-  const navigate = useNavigate(); // Redirect after update
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const [student, setStudent] = useState({
     name: '',
@@ -13,7 +13,6 @@ const EditStudent = () => {
     section: '',
   });
 
-  // Fetch student details when component mounts
   useEffect(() => {
     const fetchStudent = async () => {
       try {
@@ -26,77 +25,120 @@ const EditStudent = () => {
     fetchStudent();
   }, [id]);
 
-  // Handle form field changes
   const handleChange = (e) => {
     setStudent({ ...student, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await api.put(`/students/${id}`, student);
       alert('Student updated successfully!');
-      navigate('/'); // redirect back to list after update
+      navigate('/');
     } catch (error) {
       console.error('Error updating student:', error);
     }
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Edit Student</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Name:</label>
-        <br />
-        <input
-          type="text"
-          name="name"
-          value={student.name}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <br />
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        minHeight: '100vh',
+        backgroundColor: '#f8f9fa',
+        paddingTop: '60px',
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: '#fff',
+          padding: '30px 40px',
+          borderRadius: '10px',
+          boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+          width: '100%',
+          maxWidth: '400px',
+        }}
+      >
+        <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Edit Student</h2>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
+          <label style={{ marginBottom: '5px' }}>Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={student.name}
+            onChange={handleChange}
+            required
+            style={{
+              padding: '8px',
+              borderRadius: '5px',
+              border: '1px solid #ccc',
+              marginBottom: '15px',
+            }}
+          />
 
-        <label>Age:</label>
-        <br />
-        <input
-          type="number"
-          name="age"
-          value={student.age}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <br />
+          <label style={{ marginBottom: '5px' }}>Age:</label>
+          <input
+            type="number"
+            name="age"
+            value={student.age}
+            onChange={handleChange}
+            required
+            style={{
+              padding: '8px',
+              borderRadius: '5px',
+              border: '1px solid #ccc',
+              marginBottom: '15px',
+            }}
+          />
 
-        <label>Class:</label>
-        <br />
-        <input
-          type="text"
-          name="class"
-          value={student.class}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <br />
+          <label style={{ marginBottom: '5px' }}>Class:</label>
+          <input
+            type="text"
+            name="class"
+            value={student.class}
+            onChange={handleChange}
+            required
+            style={{
+              padding: '8px',
+              borderRadius: '5px',
+              border: '1px solid #ccc',
+              marginBottom: '15px',
+            }}
+          />
 
-        <label>Section:</label>
-        <br />
-        <input
-          type="text"
-          name="section"
-          value={student.section}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <br />
+          <label style={{ marginBottom: '5px' }}>Section:</label>
+          <input
+            type="text"
+            name="section"
+            value={student.section}
+            onChange={handleChange}
+            required
+            style={{
+              padding: '8px',
+              borderRadius: '5px',
+              border: '1px solid #ccc',
+              marginBottom: '20px',
+            }}
+          />
 
-        <button type="submit">Update Student</button>
-      </form>
+          <button
+            type="submit"
+            style={{
+              backgroundColor: '#007bff',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              padding: '10px',
+              cursor: 'pointer',
+              fontWeight: '500',
+            }}
+          >
+            Update Student
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

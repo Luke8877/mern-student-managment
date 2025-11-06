@@ -8,7 +8,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <h1>Student Management System</h1>
+        <h1 style={{ textAlign: 'center', marginTop: '20px' }}> Student Management System</h1>
         <Routes>
           <Route path="/" element={<StudentList />} />
           <Route path="/add" element={<AddStudent />} />

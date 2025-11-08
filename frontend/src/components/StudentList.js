@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../api';
+import api from '../api/api';
 import { Link } from 'react-router-dom';
 
 const StudentList = () => {
@@ -35,7 +35,9 @@ const StudentList = () => {
         padding: '40px',
       }}
     >
-      <h2 style={{ marginBottom: '20px', textAlign: 'center' }}>Student List</h2>
+      <h2 style={{ marginBottom: '20px', textAlign: 'center' }}>
+        Student List
+      </h2>
 
       {/* Add Student Button */}
       <div style={{ textAlign: 'center', marginBottom: '20px' }}>

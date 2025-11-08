@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import api from '../api';
+import api from '../api/api';
 
 const EditStudent = () => {
   const { id } = useParams();
@@ -61,8 +61,13 @@ const EditStudent = () => {
           maxWidth: '400px',
         }}
       >
-        <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Edit Student</h2>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
+        <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>
+          Edit Student
+        </h2>
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: 'flex', flexDirection: 'column' }}
+        >
           <label style={{ marginBottom: '5px' }}>Name:</label>
           <input
             type="text"
